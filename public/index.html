@@ -15,10 +15,17 @@
         <link rel="stylesheet" href="css/layout.css">
         <link rel="stylesheet" href="css/ui.css">
         <link rel="stylesheet" href="css/media_queries.css">
+        <link rel="stylesheet" href="css/elements.css">
+
     </head>
     <body>
         <header>
-            <button id="add_button"><ion-icon name="add-circle-outline"></ion-icon></button>
+            <button id="add_button" onclick="contentPanel.newItemForm()">
+                <svg id="add_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="60px">
+                    <path d="M346.5 240H272v-74.5c0-8.8-7.2-16-16-16s-16 7.2-16 16V240h-74.5c-8.8 0-16 6-16 16s7.5 16 16 16H240v74.5c0 9.5 7 16 16 16s16-7.2 16-16V272h74.5c8.8 0 16-7.2 16-16s-7.2-16-16-16z"/>
+                    <path d="M256 76c48.1 0 93.3 18.7 127.3 52.7S436 207.9 436 256s-18.7 93.3-52.7 127.3S304.1 436 256 436c-48.1 0-93.3-18.7-127.3-52.7S76 304.1 76 256s18.7-93.3 52.7-127.3S207.9 76 256 76m0-28C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48z"/>
+                </svg>
+            </button>
             <div id="sort_container">
                 <label class="text_style_main">Sort</label>
                 <div id="sort_selection">
@@ -27,19 +34,19 @@
                 </div>
             </div>
             <div id="letters">
-                <button class="letters_button">A</button> <button class="letters_button">B</button>
-                <button class="letters_button">C</button> <button class="letters_button">D</button>
-                <button class="letters_button">E</button> <button class="letters_button">F</button>
-                <button class="letters_button">G</button> <button class="letters_button">H</button>
-                <button class="letters_button">I</button> <button class="letters_button">J</button>
-                <button class="letters_button">K</button> <button class="letters_button">L</button>
-                <button class="letters_button">M</button> <button class="letters_button">N</button>
-                <button class="letters_button">O</button> <button class="letters_button">P</button>
-                <button class="letters_button">Q</button> <button class="letters_button">R</button>
-                <button class="letters_button">S</button> <button class="letters_button">T</button>
-                <button class="letters_button">U</button> <button class="letters_button">V</button>
-                <button class="letters_button">W</button> <button class="letters_button">X</button>
-                <button class="letters_button">Y</button> <button class="letters_button">Z</button>
+                <button>A</button> <button>B</button>
+                <button>C</button> <button>D</button>
+                <button>E</button> <button>F</button>
+                <button>G</button> <button>H</button>
+                <button>I</button> <button>J</button>
+                <button>K</button> <button>L</button>
+                <button>M</button> <button>N</button>
+                <button>O</button> <button>P</button>
+                <button>Q</button> <button>R</button>
+                <button>S</button> <button>T</button>
+                <button>U</button> <button>V</button>
+                <button>W</button> <button>X</button>
+                <button>Y</button> <button>Z</button>
             </div>
             <input type="text" id="search_bar" placeholder="search...">
         </header>
@@ -52,8 +59,7 @@
             </div>
         </div>
 
-        <!--Ionicons-->
-        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
         <script src="js/ui.js"></script>
+        <script src="js/JF_library.js"></script>
     </body>
 </html>

@@ -1,4 +1,8 @@
-@media only screen and (min-width: 900px){
+@media only screen and (min-width: 1080px){
+    :root{
+        --mobile: 0;
+    }
+    
     nav{
         grid-column: 2;
     }
@@ -6,5 +10,9 @@
     #content{
         display: block;
         grid-column: 1;
+    }
+
+    #letters{
+        display: grid;
     }
 }
