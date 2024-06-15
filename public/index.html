@@ -6,6 +6,12 @@
         <meta name="author" content="Jacob French">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Address Book</title>
+
+        <!--Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="css/layout.css">
         <link rel="stylesheet" href="css/ui.css">
         <link rel="stylesheet" href="css/media_queries.css">
@@ -13,6 +19,29 @@
     <body>
         <header>
             <button id="add_button"><ion-icon name="add-circle-outline"></ion-icon></button>
+            <div id="sort_container">
+                <label class="text_style_main">Sort</label>
+                <div id="sort_selection">
+                    <button class="text_style_main sort_button" id="sort_button_selected" onclick="toggleSort('a-z')">A - Z</button>
+                    <button class="text_style_main sort_button" id="sort_button_2" onclick="toggleSort('z-a')">Z - A</button>
+                </div>
+            </div>
+            <div id="letters">
+                <button class="letters_button">A</button> <button class="letters_button">B</button>
+                <button class="letters_button">C</button> <button class="letters_button">D</button>
+                <button class="letters_button">E</button> <button class="letters_button">F</button>
+                <button class="letters_button">G</button> <button class="letters_button">H</button>
+                <button class="letters_button">I</button> <button class="letters_button">J</button>
+                <button class="letters_button">K</button> <button class="letters_button">L</button>
+                <button class="letters_button">M</button> <button class="letters_button">N</button>
+                <button class="letters_button">O</button> <button class="letters_button">P</button>
+                <button class="letters_button">Q</button> <button class="letters_button">R</button>
+                <button class="letters_button">S</button> <button class="letters_button">T</button>
+                <button class="letters_button">U</button> <button class="letters_button">V</button>
+                <button class="letters_button">W</button> <button class="letters_button">X</button>
+                <button class="letters_button">Y</button> <button class="letters_button">Z</button>
+            </div>
+            <input type="text" id="search_bar" placeholder="search...">
         </header>
         <div id="content_grid">
             <nav>
@@ -25,5 +54,6 @@
 
         <!--Ionicons-->
         <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="js/ui.js"></script>
     </body>
 </html>

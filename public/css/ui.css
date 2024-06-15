@@ -19,3 +19,98 @@ ion-icon {
     padding: 0;
     border-style: none;
 }
+
+.sort_button{
+    border-style: none;
+    border-bottom-style: solid;
+    border-color: white;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#sort_container{
+    border-style: none;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    padding-top: 4px;
+}
+
+#sort_container > label{
+    margin-right: 10px;
+}
+
+#sort_selection{
+    border-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    z-index: 2;
+}
+
+#sort_selection:hover > #sort_button_2{
+    display: block;
+}
+
+#sort_button_selected{
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+#sort_button_2{
+    display: none;
+    font-size: 0.8em;
+    cursor: pointer;
+    border-bottom-style: none;
+    margin-top: 3px;
+}
+
+.text_style_main{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.3em;
+}
+
+#search_bar{
+    background-color: rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: white;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1em;
+    margin-right: 30px;
+}
+
+#search_bar::placeholder{
+    color: rgb(236, 236, 236);
+}
+
+#search_bar:focus{
+    outline: none;
+}
+
+#letters{
+    height: 50px;
+    width: 300px;
+    border-style: solid;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+}
+
+.letters_button{
+    background-color: rgba(0, 0, 0, 0);
+    border-style: none;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 0.9em;
+}

@@ -14,8 +14,9 @@ header{
     display: flex;
     position: relative;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    gap: 7vw;
     height: 80px;
     margin: 0;
     padding: 0;
