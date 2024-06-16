@@ -53,10 +53,13 @@ const contentPanel = {
     state: null,
     newItemForm: function(){
         if(this.state != "newItemForm"){
-            constructNewItemForm(document.getElementById("content"));
+            load_content("html/newItemForm.html", "content", this.newItemFormLoaded);
             document.getElementById("add_icon").style.fill = "var(--color-active)";
             this.state = "newItemForm";
         }
+    },
+    newItemFormLoaded: function(){
+
     }
 }
 
@@ -64,55 +67,4 @@ const contentPanel = {
 function getStyleVariable(variableName){
     const rootStyle = getComputedStyle(document.documentElement);
     return rootStyle.getPropertyValue(variableName);
-}
-
-function constructNewItemForm(container){
-    //heading
-    const h1 = document.createElement("h1");
-    h1.classList.add("contentHeading");
-    const h1Text = document.createTextNode("Add New Address");
-    h1.appendChild(h1Text);
-    const hr = document.createElement("hr");
-    container.appendChild(h1);
-    container.appendChild(hr);
-
-    //form
-    const formFlex = document.createElement("div");
-    formFlex.classList.add("formFlex");
-
-    let formItem = document.createElement("div");
-    formItem.classList.add("formItem");
-    const firstNameLabel = document.createElement("label");
-    const firstNameText = document.createTextNode("First Name:");
-    const firstNameField = document.createElement("input");
-    firstNameField.type = "text";
-    firstNameLabel.appendChild(firstNameText);
-    formItem.appendChild(firstNameLabel);
-    formItem.appendChild(firstNameField);
-    formFlex.appendChild(formItem);
-
-    formItem = document.createElement("div");
-    formItem.classList.add("formItem");
-    const lastNameLabel = document.createElement("label");
-    const lastNameText = document.createTextNode("Last Name:");
-    const lastNameField = document.createElement("input");
-    lastNameField.type = "text";
-    lastNameLabel.appendChild(lastNameText);
-    formItem.appendChild(lastNameLabel);
-    formItem.appendChild(lastNameField);
-    formFlex.appendChild(formItem);
-
-    formItem = document.createElement("div");
-    formItem.classList.add("formItem");
-    const mobileLabel = document.createElement("label");
-    const mobileText = document.createTextNode("Mobile:");
-    const mobileField = document.createElement("input");
-    mobileField.type = "text";
-    mobileLabel.appendChild(mobileText);
-    formItem.appendChild(mobileLabel);
-    formItem.appendChild(mobileField);
-    formFlex.appendChild(formItem);
-
-    
-    container.appendChild(formFlex);
 }

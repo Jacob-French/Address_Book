@@ -68,27 +68,12 @@
     margin-top: 3px;
 }
 
-.text_style_main{
-    color: white;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 1.3em;
-}
-
 #search_bar{
     background-color: rgba(0, 0, 0, 0);
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
     border-color: white;
-    color: white;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 1em;
     margin-right: 30px;
 }
 
@@ -125,19 +110,68 @@
     transform: scale(1.3);
 }
 
-.contentHeading{
+#newItemForm{
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: var(--color-dark-text);
+    width: 70%;
+    margin: auto;
+    padding-top: 20px;
+}
+
+.formHeader{
     text-align: center;
 }
 
 .formFlex{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 40px;
 }
 
 .formItem{
-    width: 400px;
+
+}
+
+.formItem > label{
+    color: var(--color-dark-text);
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 0.7em;
+}
+
+.textInput{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
     border-style: solid;
+    border-width: 2px;
+    border-color: var(--color-dark-text);
+    border-radius: 5px;
+    color: var(--color-dark-text);
+    height: 20px;
+}
+
+.formItemLong{
+    grid-column: span 2;
+}
+
+.textInput:focus{
+    outline: none;
+}
+
+.notesArea{
+    resize: none;
+    height: 100px;
+}
+
+.submitButton{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    border-style: solid;
+    border-color: var(--color-dark-text);
+    color: var(--color-dark-text);
+    cursor: pointer;
 }
