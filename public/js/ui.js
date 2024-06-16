@@ -1,3 +1,5 @@
+const addressBook = new AddressBook();
+
 function toggleSort(dir){
     let buttonSelected = document.getElementById("sort_button_selected");
     let button2 = document.getElementById("sort_button_2");
@@ -51,15 +53,72 @@ alphabetSearch.initiate();
 
 const contentPanel = {
     state: null,
+    setState: function(newState){
+        console.log("changing state");
+        switch(this.state){
+            case "newItemForm":
+                document.getElementById("add_icon").style.fill = "var(--color-text)";
+        }
+        this.state = newState;
+    },
     newItemForm: function(){
         if(this.state != "newItemForm"){
             load_content("html/newItemForm.html", "content", this.newItemFormLoaded);
             document.getElementById("add_icon").style.fill = "var(--color-active)";
-            this.state = "newItemForm";
+            this.setState("newItemForm");
         }
     },
     newItemFormLoaded: function(){
 
+    },
+    addNewItem: function(){
+        let firstName = document.getElementById("firstNameInput").value;
+        let lastName = document.getElementById("lastNameInput").value;
+        let email = document.getElementById("emailInput").value;
+        let mobile = document.getElementById("mobileInput").value;
+        let address = document.getElementById("addressInput").value;
+        let notes = document.getElementById("notesInput").value;
+
+        let contact = new Contact();
+        contact.set("firstName", firstName);
+        contact.set("lastName", lastName);
+        contact.set("email", email);
+        contact.set("mobile", mobile);
+        contact.set("address", address);
+        contact.set("notes", notes);
+
+        addressBook.addContact(contact);
+        navPanel.populateItems();
+    },
+    displayItem: function(itemId){
+        load_content("html/displayItem.html", "content", this.itemDisplayed);
+        this.setState("displayItem");
+    },
+    itemDisplayed: function(){
+
+    }
+}
+
+const navPanel = {
+    nav: document.getElementById("navPanel"),
+    populateItems: function(){
+        this.nav.innerHTML = "";
+        addressBook.contacts.forEach((value, key) => {
+            this.nav.appendChild(this.constructItem(value.firstName, value.lastName, value.id));
+        });
+    },
+    constructItem: function(firstName, lastName, id){
+        let container = document.createElement("div");
+        container.classList.add("navItem");
+        container.onclick = () => {this.selectItem(id)};
+        let title = document.createElement("h2");
+        let text = document.createTextNode(firstName + " " + lastName);
+        title.appendChild(text);
+        container.appendChild(title);
+        return container;
+    },
+    selectItem: function(id){
+        contentPanel.displayItem(id);
     }
 }
 

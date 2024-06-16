@@ -110,28 +110,37 @@
     transform: scale(1.3);
 }
 
-#newItemForm{
+.contentBox{
     border-top-style: solid;
     border-top-width: 1px;
     border-top-color: var(--color-dark-text);
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    row-gap: 40px;
+    width: 100%;
+}
+
+.tableBox{
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: var(--color-dark-text);
+    padding-top: 20px;
+    width: 100%;
+}
+
+.centerBox{
     width: 70%;
     margin: auto;
-    padding-top: 20px;
+    margin-top: 0;
 }
 
 .formHeader{
     text-align: center;
 }
-
-.formFlex{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 30px;
-    row-gap: 40px;
-}
-
-.formItem{
-
+.contacHeader{
+    text-align: left;
 }
 
 .formItem > label{
@@ -154,7 +163,7 @@
     height: 20px;
 }
 
-.formItemLong{
+.contentItemLong{
     grid-column: span 2;
 }
 
@@ -174,4 +183,26 @@
     border-color: var(--color-dark-text);
     color: var(--color-dark-text);
     cursor: pointer;
+}
+
+.navItem{
+    border-bottom-style: solid;
+    border-color: var(--color-dark-text);
+    border-width: 1px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    user-select: none; /* Standard syntax */
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For Internet Explorer/Edge */
+}
+
+.navItem:hover{
+    background-color: rgba(255, 255, 255, 0.082);
+    cursor: pointer;
+}
+
+.navItem:hover > h2{
+    color: var(--color-dark-text-highlight);
 }

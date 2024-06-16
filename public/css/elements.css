@@ -2,3 +2,7 @@ hr{
     border-width: 2px;
     color: var(--color-dark-text);
 }
+
+th{
+    text-align: left;
+}

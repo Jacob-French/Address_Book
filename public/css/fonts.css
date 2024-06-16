@@ -22,6 +22,7 @@
     font-weight: 600;
     font-style: normal;
     font-size: 0.9em;
+    color: var(--color-dark-text);
 }
 
 .text_light_dark{
@@ -30,6 +31,7 @@
     font-weight: 500;
     font-style: normal;
     font-size: 0.9em;
+    color: var(--color-dark-text);
 }
 
 h1{
@@ -39,4 +41,14 @@ h1{
     font-weight: 600;
     font-style: normal;
     font-size: 1.3em;
+}
+
+h2{
+    color: rgb(95, 95, 95);
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1em;
+    margin-left: 20px;
 }
