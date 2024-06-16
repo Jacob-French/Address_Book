@@ -186,9 +186,10 @@
 }
 
 .navItem{
-    border-bottom-style: solid;
-    border-color: var(--color-dark-text);
+    border-style: solid;
     border-width: 1px;
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: var(--color-dark-text);
     margin-left: 20px;
     margin-right: 20px;
 
@@ -205,4 +206,9 @@
 
 .navItem:hover > h2{
     color: var(--color-dark-text-highlight);
+}
+
+.selectedItem{
+    border-color: var(--color-dark-text);
+    border-top-color: rgba(0, 0, 0, 0);
 }
