@@ -25,47 +25,49 @@
     transform: scale(1.2);
 }
 
-.sort_button{
-    border-style: none;
-    border-bottom-style: solid;
-    border-color: white;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#sort_container{
-    border-style: none;
-    height: 35px;
+#sort-section{
+    width: 300px;
     display: flex;
     flex-direction: row;
-    padding-top: 4px;
+    justify-content: flex-start;
+    height: 100%;
+    gap: 20px;
 }
 
-#sort_container > label{
-    margin-right: 10px;
+.sort-toggle-button{
+    height: 100%;
+    padding: 0;
+    padding-top: 20px;
+    box-sizing: border-box;
 }
-
-#sort_selection{
+.sort-toggle-button > .toggle{
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    cursor: pointer;
+}
+.active-toggle{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1em;
+    
     border-style: none;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: white; 
 }
-
-#sort_selection:hover > #sort_button_2{
-    display: block;
-}
-
-#sort_button_selected{
-    font-size: 1.1em;
-    cursor: pointer;
-}
-
-#sort_button_2{
-    display: none;
+.inactive-toggle{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 0.9em;
+    
+    border-style: none;
     font-size: 0.8em;
-    cursor: pointer;
-    border-bottom-style: none;
-    margin-top: 3px;
 }
 
 #search_bar{

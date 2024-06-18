@@ -48,4 +48,7 @@ function AddressBook(){
         this.contacts.set(this.idCount, contact);
         this.idCount += 1;
     }
+    this.search = function(order, name, letter, searchTerm){
+        //search function goes here
+    }
 }
