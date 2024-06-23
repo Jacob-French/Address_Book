@@ -21,6 +21,7 @@ const alphabetSearch = {
             button.style.color = "var(--color-active)"
             this.activeLetterButton = button;
             this.activeLetter = letter;
+            navPanel.populateItems();
         }
     },
     deactivateLetter: function(){
@@ -28,6 +29,7 @@ const alphabetSearch = {
             this.activeLetterButton.style.color = "var(--color-text)";
             this.activeLetter = null;
             this.activeLetterButton = null;
+            navPanel.populateItems();
         }
     }
 };
@@ -161,14 +163,29 @@ const contentPanel = {
     }
 }
 
+//define the call back functions for when sorting toggle buttons are clicked
+toggleButtonManager.setCallbackById("sortOrderToggle", () => {
+    navPanel.populateItems();
+});
+toggleButtonManager.setCallbackById("sortNameToggle", () => {
+    navPanel.populateItems();
+});
+
 const navPanel = {
     nav: document.getElementById("navPanel"),
     activeItem: null,
     populateItems: function(){
+        this.deselectItem();
         this.nav.innerHTML = "";
-        addressBook.contacts.forEach((value, key) => {
-            this.nav.appendChild(this.constructItem(value.firstName, value.lastName, value.id));
-        });
+        
+        const order = toggleButtonManager.getValueById("sortOrderToggle");
+        const name = toggleButtonManager.getValueById("sortNameToggle");
+        const letter = alphabetSearch.activeLetter;
+
+        const contacts = addressBook.search(order, name, letter, null);
+        for(contact of contacts){
+            this.nav.appendChild(this.constructItem(contact.firstName, contact.lastName, contact.id));
+        }
     },
     constructItem: function(firstName, lastName, id){
         let container = document.createElement("div");
@@ -182,6 +199,7 @@ const navPanel = {
         return container;
     },
     selectItem: function(id){
+        console.log("selecting item");
         if(this.activeItem != null){
             let activeItem = document.getElementById("nav_item_" + this.activeItem);
             activeItem.classList.remove("selectedItem");
@@ -207,3 +225,6 @@ function getStyleVariable(variableName){
     const rootStyle = getComputedStyle(document.documentElement);
     return rootStyle.getPropertyValue(variableName);
 }
+
+addressBook.addTestContacts();
+navPanel.populateItems();

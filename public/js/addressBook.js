@@ -30,6 +30,7 @@ function Contact(){
                 this.id = value;
         }
     }
+
     this.print = function(){
         console.log("first name: " + this.firstName);
         console.log("last name: " + this.lastName);
@@ -38,17 +39,114 @@ function Contact(){
         console.log("address: " + this.address);
         console.log("notes: " + this.notes);
     }
+
+    this.getFullName = function(){
+        if(this.lastName != ""){
+            return this.firstName + " " + this.lastName;
+        }
+        else{
+            return this.firstName;
+        }
+    }
 }
 
 function AddressBook(){
     this.contacts = new Map();
     this.idCount = 0;
+
     this.addContact = function(contact){
         contact.set("id", this.idCount);
         this.contacts.set(this.idCount, contact);
         this.idCount += 1;
     }
+
     this.search = function(order, name, letter, searchTerm){
-        //search function goes here
+        
+        //create contacts list
+        let contacts = [];
+        this.contacts.forEach((value, key) => {
+            
+            let contactName;
+            if(name == "firstname"){
+                contactName = value.firstName;
+            }
+            else if(name == "lastname"){
+                contactName = value.lastName;
+            }
+            else{
+                contactName = value.getFullName();
+            }
+
+            if(letter != null){
+                if(contactName.at(0).toLowerCase() == letter.toLowerCase()){
+                    contacts.push(value);
+                }
+            }
+            else{
+                contacts.push(value);
+            }
+        });
+
+        let comparisonObject = new ComparisonObject(compareAlphabetical, {
+            direction: -1,
+            name: name
+        })
+
+        if(order != 'a-z'){
+            comparisonObject.comparisonSettings.direction = 1;
+        }
+
+        const sortedContacts = mergeSort(contacts, comparisonObject);
+        
+        //We left off here. You have the name variable which is firstname, lastname or fullname. create a compare function to 
+        //select depending on name.
+        return sortedContacts;
+    }
+
+    this.addTestContacts = function(){
+        let contact = new Contact();
+        contact.set("firstName", "Jacob");
+        contact.set("lastName", "French");
+        contact.set("email", "jacobjfrench@gmail.com");
+        contact.set("mobile", "0422129627");
+        contact.set("address", "2/3 Meaker Avenue, Oak Park, VIC, 3046");
+        contact.set("notes", "This is me");
+        this.addContact(contact);
+
+        contact = new Contact();
+        contact.set("firstName", "Rina");
+        contact.set("lastName", "Liza");
+        contact.set("email", "rinamazing@gmail.com");
+        contact.set("mobile", "0483948594");
+        contact.set("address", "Cebu City");
+        contact.set("notes", "I love her");
+        this.addContact(contact);
+
+        contact = new Contact();
+        contact.set("firstName", "Oli");
+        contact.set("lastName", "Mursell");
+        contact.set("notes", "This is my flatmate");
+        this.addContact(contact);
+
+        contact = new Contact();
+        contact.set("firstName", "Keana");
+        contact.set("lastName", "Davy");
+        this.addContact(contact);
+
+        contact = new Contact();
+        contact.set("firstName", "Evelina");
+        contact.set("lastName", "Rusaite");
+        this.addContact(contact);
+        
+        contact = new Contact();
+        contact.set("firstName", "Eagle");
+        contact.set("lastName", "Oodle");
+        this.addContact(contact);
+
+        contact = new Contact();
+        contact.set("firstName", "Josh");
+        contact.set("lastName", "Fronie");
+        contact.set("notes", "Not sure who this is");
+        this.addContact(contact);
     }
 }

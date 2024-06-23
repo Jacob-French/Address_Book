@@ -40,7 +40,8 @@ class ToggleButtonManager{
                 id: i,
                 textId: this.#toggleButtonElements[i].id, //id of the element with the toggle-button class
                 activeToggle: 0,
-                mouseOver: false
+                mouseOver: false,
+                callback: null
             }
 
             for(let c = 0; c < children.length; c++){
@@ -65,9 +66,14 @@ class ToggleButtonManager{
 
     #toggleClicked(toggleButtonId, toggleId){
         if(toggleId != this.#toggleButtons[toggleButtonId].activeToggle){
-            this.#toggleButtons[toggleButtonId].activeToggle = toggleId;
+            const toggleButton = this.#toggleButtons[toggleButtonId];
+            toggleButton.activeToggle = toggleId;
             this.#moveToggleToTop(toggleButtonId, toggleId);
             this.#setToggleClasses(toggleButtonId);
+
+            if(toggleButton.callback != null){
+                toggleButton.callback();
+            }
         }
     }
 
@@ -135,6 +141,16 @@ class ToggleButtonManager{
         }
         catch(error){
             return null;
+        }
+    }
+
+    setCallbackById(textId, callback){
+        try{
+            const toggleButton = this.#toggleButtonTextIdMap.get(textId);
+            toggleButton.callback = callback;
+        }
+        catch(error){
+            
         }
     }
 }
