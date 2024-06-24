@@ -65,24 +65,36 @@ function AddressBook(){
         //create contacts list
         let contacts = [];
         this.contacts.forEach((value, key) => {
-            
+            let push = false;
             let contactName;
             if(name == "firstname"){
-                contactName = value.firstName;
-            }
-            else if(name == "lastname"){
-                contactName = value.lastName;
+                contactName = value.firstName + " " + value.lastName;
             }
             else{
-                contactName = value.getFullName();
+                contactName = value.lastName + " " + value.firstName;
             }
+
+            contactName = contactName.toLowerCase();
 
             if(letter != null){
                 if(contactName.at(0).toLowerCase() == letter.toLowerCase()){
-                    contacts.push(value);
+                    push = true;
                 }
             }
             else{
+                push = true;
+            }
+
+            if(searchTerm != null && push){
+                if(contactName.search(searchTerm.toLowerCase()) != -1){
+                    push = true;
+                }
+                else{
+                    push = false;
+                }
+            }
+
+            if(push){
                 contacts.push(value);
             }
         });

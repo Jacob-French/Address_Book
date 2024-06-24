@@ -171,9 +171,18 @@ toggleButtonManager.setCallbackById("sortNameToggle", () => {
     navPanel.populateItems();
 });
 
+//set up the search bar
+document.getElementById("search_bar").addEventListener("input", searchBarInput);
+function searchBarInput(){
+    const searchBar = document.getElementById("search_bar");
+    navPanel.activeSearchTerm = searchBar.value;
+    navPanel.populateItems();
+}
+
 const navPanel = {
     nav: document.getElementById("navPanel"),
     activeItem: null,
+    activeSearchTerm: null,
     populateItems: function(){
         this.deselectItem();
         this.nav.innerHTML = "";
@@ -181,8 +190,14 @@ const navPanel = {
         const order = toggleButtonManager.getValueById("sortOrderToggle");
         const name = toggleButtonManager.getValueById("sortNameToggle");
         const letter = alphabetSearch.activeLetter;
+        let searchTerm = this.activeSearchTerm;
+        if(searchTerm != null){
+            if(searchTerm.trim() == ""){
+                searchTerm = null;
+            }
+        }
 
-        const contacts = addressBook.search(order, name, letter, null);
+        const contacts = addressBook.search(order, name, letter, searchTerm);
         for(contact of contacts){
             this.nav.appendChild(this.constructItem(contact.firstName, contact.lastName, contact.id));
         }
