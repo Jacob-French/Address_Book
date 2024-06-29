@@ -35,9 +35,48 @@ const alphabetSearch = {
 };
 alphabetSearch.initiate();
 
+//Here is where we left off. you need to keep track of event listeners and be able to remove them. 
+// try adding close message event listeners in the constructor. 
+function popUpMessage(){
+    
+    this.closeMessage = function(){
+        this.messageBox.style.display = "none";
+    }.bind(this);
+    
+    this.messageBox = document.getElementById("popUpContainer");
+    this.message = document.getElementById("popUpText");
+    this.yesButton = document.getElementById("popUpYes");
+    this.noButton = document.getElementById("popUpNo");
+    this.yesButton.addEventListener("click", this.closeMessage);
+    this.noButton.addEventListener("click", this.closeMessage);
+    this.activeYesButtonListener = null;
+    this.activeNoButtonListener = null;
+
+    this.displayMessage = function(message, noLabel, yesLabel, noCallback, yesCallback){
+        if(this.activeYesButtonListener != null){
+            this.yesButton.removeEventListener(this.activeYesButtonListener.event, this.activeYesButtonListener.callback);
+        }
+        if(this.activeNoButtonListener != null){
+            this.noButton.removeEventListener(this.activeNoButtonListener.event, this.activeNoButtonListener.callback);
+        }
+        
+        this.messageBox.style.display = "flex";
+        this.message.innerHTML = message;
+        this.yesButton.innerHTML = yesLabel;
+        this.noButton.innerHTML = noLabel;
+        this.yesButton.addEventListener("click", yesCallback);
+        this.activeYesButtonListener = {event: "click", callback: yesCallback};
+        this.noButton.addEventListener("click", noCallback);
+        this.activeNoButtonListener = {event: "click", callback: noCallback};
+    }
+}
+
+const popup = new popUpMessage();
+
 
 const contentPanel = {
     state: null,
+    activeContactId: null,
     setState: function(newState){
         switch(this.state){
             case "newItemForm":
@@ -76,9 +115,14 @@ const contentPanel = {
         navPanel.populateItems();
         navPanel.selectItem(contact.id);
     },
+    displayLanding: function(){
+        load_content("html/landing.html", "content", () => {});
+    },
     displayItem: function(itemId){
         load_content("html/displayItem.html", "content", () => {this.itemDisplayed(itemId)});
         this.setState("displayItem");
+        this.activeContactId = itemId;
+        console.log("displaying contact: " + this.activeContactId);
     },
     itemDisplayed: function(itemId){
         let contact = addressBook.contacts.get(itemId);
@@ -160,7 +204,20 @@ const contentPanel = {
             tr.appendChild(td);
             table.appendChild(tr);
         }
+    },
+    deleteItem: function(){
+        popup.displayMessage("Are you sure you want to delete this contact?", "No", "Delete", ()=>{}, deleteContact);
+    },
+    editItem: function(){
+        console.log("editing item");
     }
+}
+
+function deleteContact(){
+    console.log("deleting contact");
+    addressBook.removeContact(contentPanel.activeContactId);
+    navPanel.populateItems();
+    contentPanel.displayLanding();
 }
 
 //define the call back functions for when sorting toggle buttons are clicked
@@ -243,3 +300,4 @@ function getStyleVariable(variableName){
 
 addressBook.addTestContacts();
 navPanel.populateItems();
+contentPanel.displayLanding();

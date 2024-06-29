@@ -48,6 +48,7 @@ nav{
     flex-direction: column;
     justify-content: flex-start;
     align-items: left;
+    overflow: auto;
 }
 
 #content{

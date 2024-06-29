@@ -22,7 +22,7 @@
 }
 
 #add_icon:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 #sort-section{
@@ -213,4 +213,73 @@
 .selectedItem{
     border-color: var(--color-dark-text);
     border-top-color: rgba(0, 0, 0, 0);
+}
+
+.pop-up-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(5px);
+}
+
+.pop-up-message{
+    width: 300px;
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 60% 40%;
+}
+
+.pop-up-message > p{
+    text-align: center;
+    margin: 20px;
+}
+
+.pop-up-button-container{
+    display: flex;
+    justify-content: space-around;
+    grid-row: 2;
+}
+
+.pop-up-button-container > button{
+    height: 30px;
+    min-width: 60px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    border-width: 2px;
+    border-color: rgba(0, 0, 0, 0.685);
+}
+
+.contact-head-bar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.icon-box > button{
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: none;
+}
+
+.contact-header-icon{
+    color: var(--color-dark-text);
+    fill: var(--color-dark-text);
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s;
+}
+
+.contact-header-icon:hover{
+    transform: scale(1.1);
 }
