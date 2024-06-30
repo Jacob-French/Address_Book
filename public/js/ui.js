@@ -68,6 +68,13 @@ function popUpMessage(){
         this.activeYesButtonListener = {event: "click", callback: yesCallback};
         this.noButton.addEventListener("click", noCallback);
         this.activeNoButtonListener = {event: "click", callback: noCallback};
+
+        if(noCallback == null){
+            this.noButton.style.display = "none";
+        }
+        else{
+            this.noButton.style.display = "block";
+        }
     }
 }
 
@@ -103,17 +110,46 @@ const contentPanel = {
         let address = document.getElementById("addressInput").value;
         let notes = document.getElementById("notesInput").value;
 
-        let contact = new Contact();
-        contact.set("firstName", firstName);
-        contact.set("lastName", lastName);
-        contact.set("email", email);
-        contact.set("mobile", mobile);
-        contact.set("address", address);
-        contact.set("notes", notes);
+        if(firstName == ""){
+            popup.displayMessage("Your contact must have a first name.", "Ok", "I understand", null, ()=>{});
+        }
+        else{
+            let contact = new Contact();
+            contact.set("firstName", firstName);
+            contact.set("lastName", lastName);
+            contact.set("email", email);
+            contact.set("mobile", mobile);
+            contact.set("address", address);
+            contact.set("notes", notes);
 
-        addressBook.addContact(contact);
-        navPanel.populateItems();
-        navPanel.selectItem(contact.id);
+            addressBook.addContact(contact);
+            navPanel.populateItems();
+            navPanel.selectItem(contact.id);
+        }
+    },
+    updateItem: function(){
+        let firstName = document.getElementById("firstNameInput").value;
+        let lastName = document.getElementById("lastNameInput").value;
+        let email = document.getElementById("emailInput").value;
+        let mobile = document.getElementById("mobileInput").value;
+        let address = document.getElementById("addressInput").value;
+        let notes = document.getElementById("notesInput").value;
+
+        if(firstName == ""){
+            popup.displayMessage("Your contact must have a first name.", "Ok", "I understand", null, ()=>{});
+        }
+        else{
+            let contact = addressBook.contacts.get(this.activeContactId);
+            contact.firstName = firstName;
+            contact.lastName = lastName;
+            contact.email = email;
+            contact.mobile = mobile;
+            contact.address = address;
+            contact.notes = notes;
+
+            navPanel.populateItems();
+            navPanel.selectItem(this.activeContactId);
+        }
     },
     displayLanding: function(){
         load_content("html/landing.html", "content", () => {});
@@ -122,7 +158,9 @@ const contentPanel = {
         load_content("html/displayItem.html", "content", () => {this.itemDisplayed(itemId)});
         this.setState("displayItem");
         this.activeContactId = itemId;
-        console.log("displaying contact: " + this.activeContactId);
+    },
+    displayActiveItem: function(){
+        this.displayItem(this.activeContactId);
     },
     itemDisplayed: function(itemId){
         let contact = addressBook.contacts.get(itemId);
@@ -209,7 +247,17 @@ const contentPanel = {
         popup.displayMessage("Are you sure you want to delete this contact?", "No", "Delete", ()=>{}, deleteContact);
     },
     editItem: function(){
-        console.log("editing item");
+        load_content("html/editItemForm.html", "content", () => {this.editItemform(this.activeContactId)});
+    },
+    editItemform: function(itemId){
+        let contact = addressBook.contacts.get(itemId);
+
+        document.getElementById("firstNameInput").value = contact.firstName;
+        document.getElementById("lastNameInput").value = contact.lastName;
+        document.getElementById("emailInput").value = contact.email;
+        document.getElementById("mobileInput").value = contact.mobile;
+        document.getElementById("addressInput").value = contact.address;
+        document.getElementById("notesInput").value = contact.notes;
     }
 }
 
